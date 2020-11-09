@@ -11,16 +11,17 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-short_survey_df = pd.read_csv('kaggle_datasets/OSMI 2019 Mental Health in Tech Survey Results - OSMI Mental Health in Tech Survey 2019.csv')
+short_survey_df = pd.read_csv('clean_mental_health_data.csv')
+
+app.title = 'OSMI Mental Health Survey'
+
 
 
 all_options =  {
   "Demographics":[
      '*Are you self-employed?*',
-     #'What is your age?',
      'What is your gender?',
      'What country do you *live* in?',
-    # 'What US state or territory do you *live* in?',
      'What is your race?',
      'What country do you *work* in?',
      'How many employees does your company or organization have?',
@@ -32,27 +33,22 @@ all_options =  {
      'Has your employer ever formally discussed mental health (for example, as part of a wellness campaign or other official communication)?', 
      'Would you feel comfortable discussing a mental health issue with your direct supervisor(s)?',
      'Have you ever discussed your mental health with your employer?',
-
      'Have you ever discussed your mental health with coworkers?',
      'If you have revealed a mental health disorder to a coworker or employee, how has this impacted you or the relationship?',
-    # 'Overall, how much importance does your employer place on physical health?',
-    # 'Overall, how much importance does your employer place on mental health?'], 
+
      ],
 "Employee mental health":[   
      'Do you *currently* have a mental health disorder?',
       'Have you had a mental health disorder in the past?',
      '*If so, what disorder(s) were you diagnosed with?*',
      'Have you ever sought treatment for a mental health disorder from a mental health professional?',
-     'Are you openly identified at work as a person with a mental health issue?',
-  #   'Has being identified as a person with a mental health issue affected your career?',
-  #   'How has it affected your career?',          
+     'Are you openly identified at work as a person with a mental health issue?',       
     'Do you believe your productivity is ever affected by a mental health issue?',
      'If yes, what percentage of your work time (time performing primary or secondary job functions) is affected by a mental health issue?',           
      'Do you have medical coverage (private insurance or state-provided) that includes treatment of mental health disorders?',
-    # 'How willing would you be to share with friends and family that you have a mental illness?'],
       ],
     
-"Response":[  
+"Reactions":[  
      'If you have been diagnosed or treated for a mental health disorder, do you ever reveal this to clients or business contacts?',
      'If you have revealed a mental health disorder to a client or business contact, how has this affected you or the relationship?',
      'Would you bring up your *mental* health with a potential employer in an interview?',
@@ -60,17 +56,18 @@ all_options =  {
      'Have you observed or experienced a *supportive or well handled response* to a mental health issue in your current or previous workplace?',
      'Overall, how well do you think the tech industry supports employees with mental health issues?'
 ],
+    
   "Long responses": [  
       'Describe the conversation you had with your employer about your mental health, including their reactions and what actions were taken to address your mental health issue/questions.',      
       'Describe the circumstances of the badly handled or unsupportive response.',
     'Briefly describe what you think the industry as a whole and/or employers could do to improve mental health support for employees.',
-     'Why or why not?.1' ]
+     'Would you bring up your mental health at a job interview - why or why not?' ]
    
      }  
 
     
 app.layout = html.Div([
-
+            html.H1(children='Open Sourcing Mental Illness (OSMI) - Survey Analysis'),
             dcc.RadioItems(
             id='countries-radio',
             options=[{'label': k, 'value': k} for k in all_options.keys()],
