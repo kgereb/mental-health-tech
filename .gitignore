@@ -2,5 +2,7 @@ venv
 *.pyc
 .DS_Store
 .env
-
+kaggle_datasets
+.Untitled.ipynb
+clean_data.ipynb
 
