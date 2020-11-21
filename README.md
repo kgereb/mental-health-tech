@@ -9,4 +9,4 @@ https://medium.com/p/93341c27035d
 Resources:
 - app.py is the the plotly dash app, deployed using heroku
 - clean_data.ipynb is a Jupyter Notebook, for cleaning the data downloaded from Kaggle
-- requirements.txt contains the packages needed to run the app.
+- requirements.txt contains the packages needed to run the app in a Python 3.8 virtual environement 
